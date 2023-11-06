@@ -43,8 +43,7 @@ pub async fn find_and_delete(url: &str, target_username: &str, threads: usize) -
         })
         .buffer_unordered(256);
 
-    bodies
-        .try_for_each_concurrent(threads, |b| async move {
+    bodies.try_for_each_concurrent(threads, |b| async move {
             match b {
                 (payload, true) => {
                     println!("[200] {}", payload);
